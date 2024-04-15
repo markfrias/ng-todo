@@ -1,0 +1,10 @@
+<form class="input-form" #inputForm="ngForm">
+    <mat-form-field class="input-field">
+        <input matInput placeholder="Create new to-do" [(ngModel)] = "model.taskDescription" name="taskDescription" (change)="onChange($event)" (keypress)="onKeyPress($event)">
+    </mat-form-field>
+
+    <button mat-flat-button type="button" color="primary" class="input-field-submit" (click)="onAdd(inputForm)">Add</button>
+</form>
+
+
+

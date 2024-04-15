@@ -24,6 +24,6 @@ export class TaskItemComponent implements OnInit {
   @Input() task: Task = new Task('', false, 1);
 
   onChange($event: any) {
-    console.log($event)
+    //console.log($event)
   }
 }

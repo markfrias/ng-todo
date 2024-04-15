@@ -17,19 +17,19 @@ export class LocalTaskService {
 
     // Add item to array
     let tasksArray = this.getTasksFromStorage();
-    console.log(tasksArray)
+    //console.log(tasksArray)
     tasksArray.push(task);
 
     // Save to localStorage
     this.localStorage.setItem('tasks', JSON.stringify(tasksArray));
-    console.log(this.localStorage.getItem('tasks'))
+    //console.log(this.localStorage.getItem('tasks'))
   }
 
   getTasksFromStorage() {
     let storedTasks = this.localStorage.getItem('tasks');
     if (storedTasks) {
       let convertedTasks = JSON.parse(storedTasks);
-      console.log(convertedTasks)
+      //console.log(convertedTasks)
       return convertedTasks;
     } else {
       const array = JSON.stringify([])

@@ -31,7 +31,7 @@ export class InputHeaderComponent {
   }
 
   onChange($event: any): void {
-    console.log(this.model)
+    //console.log(this.model)
   }
 
   onKeyPress($event: any): void {

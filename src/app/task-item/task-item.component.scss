@@ -1,0 +1,19 @@
+.task-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.task-item__checkandtitle {
+    flex: 75%;
+    min-width: 0;
+    max-width: 500px;
+    span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100px;
+    }
+}
+

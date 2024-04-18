@@ -1,4 +1,12 @@
-<mat-checkbox (change)="onChange($event)"></mat-checkbox>
-<span>{{task.taskDescription}}</span>
-<button (click)="onDelete(task.id)">Delete</button>
+<div class="task-item">
+    <div class="task-item__checkandtitle">
+        <mat-checkbox (change)="onChange($event)"></mat-checkbox>
+        <span>{{task.taskDescription}}</span>
+    </div>
+    
+    <button mat-icon-button (click)="onDelete(task.id)" aria-label="Button for deleting to-do list item with trash can icon">
+        <mat-icon>delete</mat-icon>
+    </button>
+</div>
+
 <mat-divider></mat-divider>

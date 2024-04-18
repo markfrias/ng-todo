@@ -35,7 +35,20 @@ export class LocalTaskService {
       const array = JSON.stringify([])
       return JSON.parse(array);
     }
-    
+  }
+
+  removeTaskFromStorage(id: number) {
+    let tasksArray: [] = this.getTasksFromStorage();
+    let deletedTask = tasksArray.findIndex(task => this.findById(id, task))
+    tasksArray.splice(deletedTask, 1);
+    this.localStorage.setItem('tasks', JSON.stringify(tasksArray));
+  }
+
+  findById(number: number, task: Task) {
+    if (number === task.id) {
+      return true;
+    }
+    return false
   }
 
 

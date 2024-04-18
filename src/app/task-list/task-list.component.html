@@ -1,6 +1,6 @@
 <mat-list>
     <mat-list-item *ngFor="let task of taskList">
-        <app-task-item [task]="task"></app-task-item>
+        <app-task-item [task]="task" (deletedTaskEvent)="onDeleteEvent($event)"></app-task-item>
         
     </mat-list-item>
     

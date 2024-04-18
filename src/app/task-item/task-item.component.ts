@@ -6,6 +6,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatPseudoCheckboxModule } from '@angular/material/core';
 import { LocalTaskService } from '../services/local-task/local-task.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-task-item',
@@ -16,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class TaskItemComponent implements OnInit {
   
-  constructor(private localTaskService: LocalTaskService) {}
+  constructor(private localTaskService: LocalTaskService, private snackbarService: MatSnackBar) {}
 
   ngOnInit(): void {
     this.localTaskService.getTasksFromStorage();
@@ -33,5 +34,8 @@ export class TaskItemComponent implements OnInit {
   onDelete(id: number) {
     this.localTaskService.removeTaskFromStorage(id);
     this.deletedTaskEvent.emit(id)
+    this.snackbarService.open('Task has been removed.', 'Okay');
+
+    // Add undo?
   }
 }

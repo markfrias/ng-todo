@@ -15,12 +15,16 @@ export class AppComponent implements OnInit {
     this.taskList = this.localTaskService.getTasksFromStorage();
   }
 
-
   title = 'ng-todo';
   taskList = [
     new Task('Eat dinner', false, (Math.trunc(Math.random() * 100)))
   ];
+
   addNewTask(newTask: Task): void {
     this.taskList.push(newTask);
+  }
+
+  removeTask(id: number) {
+    this.taskList = this.taskList.filter((task,idx) => task.id !== id)
   }
 }

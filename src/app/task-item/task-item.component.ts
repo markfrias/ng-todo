@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Task } from '../models/task.model';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,8 +22,15 @@ export class TaskItemComponent implements OnInit {
   }
   
   @Input() task: Task = new Task('', false, 1);
+  @Output() deletedTaskEvent = new EventEmitter<number>();
+
 
   onChange($event: any) {
     //console.log($event)
+  }
+
+  onDelete(id: number) {
+    this.localTaskService.removeTaskFromStorage(id);
+    this.deletedTaskEvent.emit(id)
   }
 }

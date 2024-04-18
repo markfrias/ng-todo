@@ -2,8 +2,15 @@
     <app-navigation class="navigation"></app-navigation>
 
     <div class="app-content">
-        <app-input-header class="input-header" (newTaskEvent)="addNewTask($event)"></app-input-header>
+        <div>
+            <app-input-header class="input-header" (newTaskEvent)="addNewTask($event)"></app-input-header>
+        </div>
+        
+        <div>
+            <app-task-list class="app-tasklist" [taskList]="taskList" (removedTaskEvent)="removeTask($event)"></app-task-list> 
+        </div>
+        
     </div>
 
-    <app-task-list [taskList]="taskList" (removedTaskEvent)="removeTask($event)"></app-task-list>   
+      
 </div>

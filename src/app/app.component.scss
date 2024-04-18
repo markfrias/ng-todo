@@ -3,10 +3,47 @@
     flex-direction: column;
 }
 
-.app-content {
+.app-content > div:not(:last-child) {
     padding: 1em;
+
+    
 }
 
 .navigation {
     margin-bottom: 1em;
+}
+
+@media only screen and (min-width: 768px) {
+    .app-wrapper {
+        justify-content: center;
+    }
+
+    .app-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        div {
+            width: 100%; 
+            max-width: 700px;
+        }
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .app-wrapper {
+        justify-content: center;
+    }
+
+    .app-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        div {
+            width: 1024px;
+        }
+    }
 }

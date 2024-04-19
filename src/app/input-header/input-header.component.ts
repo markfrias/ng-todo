@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Task } from '../models/task.model';
 import { FormsModule } from '@angular/forms';
 import { LocalTaskService } from '../services/local-task/local-task.service';
+import { TaskIdGeneratorServiceService } from '../services/task-id-generator-service/task-id-generator-service.service';
 
 
 @Component({
@@ -21,11 +22,11 @@ import { LocalTaskService } from '../services/local-task/local-task.service';
   styleUrl: './input-header.component.scss'
 })
 export class InputHeaderComponent {
-  constructor(private localTaskService: LocalTaskService) {}
+  constructor(private localTaskService: LocalTaskService, private taskIdGeneratorService: TaskIdGeneratorServiceService) {}
   
   onAdd($event: any): void {
-    this.addNewTask({...this.model});
-    this.localTaskService.addTaskToStorage(this.model);
+    this.addNewTask({...this.model, id: this.taskIdGeneratorService.generateTaskId()});
+    this.localTaskService.addTaskToStorage({...this.model, id: this.taskIdGeneratorService.generateTaskId()});
     this.resetForm();
     
   }
@@ -52,7 +53,7 @@ export class InputHeaderComponent {
     }
   }
 
-  model = new Task('', false, (Math.trunc(Math.random() * 100)));
+  model = new Task('', false, this.taskIdGeneratorService.generateTaskId() );
 
   @Output() newTaskEvent = new EventEmitter<Task>();
 }

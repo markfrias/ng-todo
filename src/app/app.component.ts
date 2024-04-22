@@ -27,4 +27,23 @@ export class AppComponent implements OnInit {
   removeTask(id: number) {
     this.taskList = this.taskList.filter((task,idx) => task.id !== id)
   }
+
+  changeCheckBoxValue(id: number) {
+        // Get task
+        if (this.taskList.length > 0) {
+          let task = this.taskList.find((selectedTask => selectedTask?.id === id));
+
+          // Find the task index
+          let taskIndex = this.taskList.findIndex((selectedTask => selectedTask?.id === id));
+    
+          if (task) {
+            // Modify task
+            const modifiedTask = {...task, isCompleted: !task?.isCompleted }
+            
+            // Assign modified task to array index item
+            this.taskList[taskIndex] = modifiedTask;
+          }
+          
+        }
+  }
 }

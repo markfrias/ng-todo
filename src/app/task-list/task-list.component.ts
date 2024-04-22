@@ -16,8 +16,13 @@ export class TaskListComponent {
   constructor( ) {}
   @Input() taskList: Task[] = [];
   @Output() removedTaskEvent = new EventEmitter<number>();
+  @Output() checkBoxChangeEvent = new EventEmitter<number>();
 
   onDeleteEvent(id: number) {
-    this.removedTaskEvent.emit(id)
+    this.removedTaskEvent.emit(id);
+  }
+
+  onCheckBoxChangeEvent(id: number) {
+    this.checkBoxChangeEvent.emit(id);
   }
 }

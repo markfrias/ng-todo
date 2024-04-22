@@ -7,11 +7,12 @@ import { MatPseudoCheckboxModule } from '@angular/material/core';
 import { LocalTaskService } from '../services/local-task/local-task.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-task-item',
   standalone: true,
-  imports: [MatListModule, MatIconModule, MatCheckboxModule, MatButtonModule],
+  imports: [MatListModule, MatIconModule, MatCheckboxModule, MatButtonModule, CommonModule],
   templateUrl: './task-item.component.html',
   styleUrl: './task-item.component.scss'
 })
@@ -25,10 +26,12 @@ export class TaskItemComponent implements OnInit {
   
   @Input() task: Task = new Task('', false, 1);
   @Output() deletedTaskEvent = new EventEmitter<number>();
+  @Output() checkBoxChangeEvent = new EventEmitter<number>();
 
 
-  onChange($event: any) {
-    //console.log($event)
+  onChange(id: number) {
+    this.checkBoxChangeEvent.emit(id);
+    this.localTaskService.changeTaskStatusInStorage(id);
   }
 
   onDelete(id: number) {

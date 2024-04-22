@@ -17,19 +17,16 @@ export class LocalTaskService {
 
     // Add item to array
     let tasksArray = this.getTasksFromStorage();
-    //console.log(tasksArray)
     tasksArray.push(task);
 
     // Save to localStorage
     this.localStorage.setItem('tasks', JSON.stringify(tasksArray));
-    //console.log(this.localStorage.getItem('tasks'))
   }
 
-  getTasksFromStorage() {
+  getTasksFromStorage(): Task[] {
     let storedTasks = this.localStorage.getItem('tasks');
     if (storedTasks) {
       let convertedTasks = JSON.parse(storedTasks);
-      //console.log(convertedTasks)
       return convertedTasks;
     } else {
       const array = JSON.stringify([])
@@ -38,10 +35,32 @@ export class LocalTaskService {
   }
 
   removeTaskFromStorage(id: number) {
-    let tasksArray: [] = this.getTasksFromStorage();
+    let tasksArray: Task[] = this.getTasksFromStorage();
     let deletedTask = tasksArray.findIndex(task => this.findById(id, task))
     tasksArray.splice(deletedTask, 1);
     this.localStorage.setItem('tasks', JSON.stringify(tasksArray));
+  }
+
+  changeTaskStatusInStorage(id: number) : void {
+    // Get tasks
+    let tasksArray: Task[] = this.getTasksFromStorage();
+    // Get task
+    if (tasksArray.length > 0) {
+      let task = tasksArray.find((selectedTask => selectedTask?.id === id));
+      let taskIndex = tasksArray.findIndex((selectedTask => selectedTask?.id === id));
+
+      if (task) {
+        // Modify task
+        const modifiedTask = {...task, isCompleted: !task?.isCompleted }
+        // Insert task into array
+        tasksArray[taskIndex] = modifiedTask;
+
+        // Change task list in storage
+        this.localStorage.setItem('tasks', JSON.stringify(tasksArray));
+      }
+      
+    }
+    
   }
 
   findById(number: number, task: Task) {

@@ -37,7 +37,7 @@ export class TaskItemComponent implements OnInit {
   onDelete(id: number) {
     this.localTaskService.removeTaskFromStorage(id);
     this.deletedTaskEvent.emit(id)
-    this.snackbarService.open('Task has been removed.', 'Okay');
+    this.snackbarService.open('Task has been removed.', 'Okay', {duration: 1000});
 
     // Add undo?
   }
